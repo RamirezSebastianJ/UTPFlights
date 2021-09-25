@@ -1,0 +1,48 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://img.icons8.com/fluency/48/000000/airplane-front-view.png"/>
+      UTPFlights
+    </a>
+    <div class="d-flex">
+      <button class="btn btn-outline-primary" (click)="open(content)">
+        <img src="https://img.icons8.com/material-rounded/24/000000/login-rounded-right.png"/>
+        Iniciar Sesion
+      </button>
+    </div>
+  </div>
+</nav>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <div class="modal-title" id="modal-basic-title">
+      <img src="https://img.icons8.com/fluency/48/000000/airplane-front-view.png"/>
+      UTPFlights
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="modal-hero" src="../../../assets/Login-amico.svg" alt="">
+    <div class="description">
+      <h2>Inicia sesión y ahorra</h2>
+      <p>Sigue precios, organiza tus planes de viaje y accede a ofertas exclusivas para miembros con tu cuenta UTPFlights.
+      </p>
+    </div>
+    <div class="input-group mb-3">
+      <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
+      <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" >
+    </div>
+    <div class="input-group mb-3">
+      <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
+      <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" >
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Iniciar sesión</button>
+    </div>
+    <p>
+      ¿No tienes una cuenta? <br> <a href="">Regístrate</a> y aprovecha nuestras promociones
+    </p>
+  </div>
+</ng-template>

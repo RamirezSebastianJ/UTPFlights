@@ -8,8 +8,9 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  closeResult = '';
   email = new FormControl('', [Validators.required, Validators.email]);
+  closeResult = '';
+  login: boolean = false;
 
   constructor(private modalService: NgbModal) {}
   ngOnInit(): void {

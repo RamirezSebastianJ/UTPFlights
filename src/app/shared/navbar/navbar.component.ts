@@ -10,7 +10,7 @@ import {FormControl, Validators} from '@angular/forms';
 export class NavbarComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   closeResult = '';
-  login: boolean = false;
+  login: boolean = true;
 
   constructor(private modalService: NgbModal) {}
   ngOnInit(): void {
@@ -44,4 +44,7 @@ export class NavbarComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
+  activeRegister(){
+    this.login = !this.login;
+  }
 }

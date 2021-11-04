@@ -25,32 +25,59 @@
   </div>
   <div class="modal-body">
     <section *ngIf="login===true" class="login">
-      <img class="modal-hero" src="../../../assets/Login-amico.svg" alt="">
-      <div class="description">
-        <h2>Inicia sesión y ahorra</h2>
-        <p>Sigue precios, organiza tus planes de viaje y accede a ofertas exclusivas para miembros con tu cuenta UTPFlights.
+      <header>
+        <img class="modal-hero" src="../../../assets/Login-amico.svg" alt="">
+        <div class="description">
+          <h2>Inicia sesión y ahorra</h2>
+          <p>Sigue precios, organiza tus planes de viaje y accede a ofertas exclusivas para miembros con tu cuenta UTPFlights.</p>
+        </div>
+      </header>
+      <body class="mt-4">
+        <div class="input-group mb-3">
+          <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
+          <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" >
+        </div>
+        <div class="input-group mb-3">
+          <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
+          <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" >
+        </div>
+        <div class="col-auto mb-3 container-button">
+          <button type="submit" class="btn btn-primary ">Iniciar sesión</button>
+        </div>
+      </body>
+      <footer>
+        <p>
+          ¿No tienes una cuenta? <br> <span class="redirect" (click)="activeRegister()">Regístrate</span> y aprovecha nuestras promociones
         </p>
-      </div>
-      <div class="input-group mb-3">
-        <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
-        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" >
-      </div>
-      <div class="input-group mb-3">
-        <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
-        <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" >
-      </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Iniciar sesión</button>
-      </div>
-      <p>
-        ¿No tienes una cuenta? <br> <a href="">Regístrate</a> y aprovecha nuestras promociones
-      </p>
+      </footer>
     </section>
 
     <section *ngIf="login==false">
-      <img class="modal-hero" src="../../../assets/Register-rafiki.svg" alt="">
-
+      <header >
+        <img class="modal-hero" src="../../../assets/Register-rafiki.svg" alt="">
+        <h2>Regístrate y ahorra</h2>
+        <p>Sigue precios, organiza tus planes de viaje y accede a ofertas exclusivas para miembros con tu cuenta UTPFlights.</p>
+      </header>
+      <body>
+        <body class="mt-4">
+          <div class="input-group mb-3">
+            <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
+            <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" >
+          </div>
+          <div class="input-group mb-3">
+            <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
+            <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" >
+          </div>
+          <div class="col-auto mb-3 container-button">
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </div>
+        </body>
+      </body>
+      <footer>
+        <p>
+          ¿Ya tienes una cuenta? <br> <span class="redirect" (click)="activeRegister()">Iniciar sesón</span> y gestiona tus vuelos
+        </p>
+      </footer>
     </section>
-
   </div>
 </ng-template>

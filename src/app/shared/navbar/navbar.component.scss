@@ -35,3 +35,15 @@
   height: 34px;
   margin-right: 10px;
 }
+
+.container-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redirect{
+  color:dodgerblue;
+  text-decoration: underline;
+  cursor: pointer;
+}

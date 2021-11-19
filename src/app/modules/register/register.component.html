@@ -1,0 +1,77 @@
+<div class="container">
+  <header class="mt-5 mb-5">
+    <h1>Te damos la bienvenida</h1>
+    <p>Ingresa tus datos personales y finaliza tu registro</p>
+  </header>
+
+  <div class="register">
+    <section class="form">
+      <form [formGroup]="form" >
+        <body class="mt-4">
+          <div class="input">
+            <p>DNI</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="DNI" aria-label="DNI" formControlName="dni">
+            </div>
+          </div>
+          <div class="input">
+            <p>Nombre</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" formControlName="name">
+            </div>
+          </div>
+          <div class="input" >
+            <p>Apellido</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido" formControlName="lastName" >
+            </div>
+          </div>
+          <div class="input" >
+            <p>Fecha de nacimiento</p>
+            <div class="input-group mb-3">
+              <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Fecha de nacimiento" formControlName="dateBirth" >
+            </div>
+          </div>
+          <div class="input" >
+            <p>Lugar de nacimiento</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Lugar de nacimiento" aria-label="Lugar de nacimiento" formControlName="placeBirth"  >
+            </div>
+          </div>
+          <div class="input" >
+            <p>Direccion de facturacion</p>
+            <div class="input-group mb-3">
+              <input type="address" class="form-control" placeholder="Direccion de facturacion" aria-label="Direccion de facturacion" formControlName="address">
+            </div>
+          </div>
+          <div class="input" >
+            <p>Genero</p>
+            <select name="genero" formControlName="gender">
+
+              <option>Masculino</option>
+
+              <option>Femenino</option>
+
+            </select>
+          </div>
+          <div class="input" >
+            <p>Correo electronico</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" formControlName="email" >
+            </div>
+          </div>
+          <div class="input" >
+            <p>Contraseña</p>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" formControlName="password" >
+            </div>
+          </div>
+          <div class="col-auto mb-3 container-button">
+            <button type="submit" class="btn btn-primary  " (click)="register()">Registrarse</button>
+          </div>
+        </body>
+      </form>
+    </section>
+  </div>
+</div>
+

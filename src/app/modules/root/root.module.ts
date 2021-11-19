@@ -1,35 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { RootComponent } from './root.component';
+import { RootHomeComponent } from './root-home/root-home.component';
+import { RootRoutingModule } from './root-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../core/services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    FooterComponent,
+    RootComponent,
+    RootHomeComponent,
+
   ],
   imports: [
     CommonModule,
+    RootRoutingModule,
     FormsModule,
     NgbModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
   ],
-  exports: [
-    NavbarComponent,
-  ],
-  providers: [
-    AuthService
-  ]
+  
 })
-export class SharedModule { }
+export class RootModule { }

@@ -1,23 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { response } from 'src/app/core/models/response.model';
-
-
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-root-home',
+  templateUrl: './root-home.component.html',
+  styleUrls: ['./root-home.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class RootHomeComponent implements OnInit {
+  closeResult = '';
+
   form = new FormGroup({
+    dni : new FormControl('', [Validators.required, Validators.email]),
     email : new FormControl('', [Validators.required, Validators.email]),
     password : new FormControl('', [Validators.required])
   });
-  closeResult = '';
   login: boolean = true;
+  constructor(private modalService: NgbModal,private router: Router, private authService: AuthService) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
   loginResponse: response={
     message:'',
     status: 0,
@@ -25,17 +29,6 @@ export class NavbarComponent implements OnInit {
     pending: -1
 
   };
-  error = false;
-
-  constructor(private modalService: NgbModal, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
-    console.log(this.route.snapshot.fragment);
-  }
-  ngOnInit(): void {
-    console.log(this.route.snapshot.fragment);
-    throw new Error('Method not implemented.');
-
-  }
-
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -54,7 +47,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-
   getErrorMessage() {
     if (this.form.hasError('required')) {
       return 'You must enter a value';
@@ -63,49 +55,23 @@ export class NavbarComponent implements OnInit {
     return this.form.hasError('email') ? 'Not a valid email' : '';
   }
 
-
-
-  toRegister(){
-    this.router.navigate(['register']);
-
-  }
-
   activeRegister(){
     console.log(this.form.get('email')!.value , this.form.get('password')!.value);
-    this.authService.login(this.form.get('email')!.value , this.form.get('password')!.value).subscribe((response) => {
+    this.authService.registerAdmin(this.form.get('dni')!.value,this.form.get('email')!.value , this.form.get('password')!.value).subscribe((response) => {
       this.loginResponse = response;
       console.log(response);
       if(response.status ===200){
+        alert('Registro exitoso');
 
-
-        if(response.rol===2){
-          this.router.navigate(['root/home']);
-        }else{
-          if(response.rol===1){
-            alert('Login ADMIN');
-          }else{
-            alert('Login Usuario');
-          }
-        }
-        if(response.pending ===1){
-          this.router.navigate(['register'],
-          {
-            queryParams: {
-              email: this.form.get('email')!.value,
-              password: this.form.get('password')!.value,
-              pending: response.pending,
-              rol:response.rol
-            }
-          });
-        }
-      }else{
-        alert('Email o clave incorrecta');
       }
 
     },(error:any)=>{
       console.error("error voucher ", error)
     });
-    this.error = true;
+  }
+
+  toRegister(){
+    this.router.navigate(['register']);
   }
 
 }

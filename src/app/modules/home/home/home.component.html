@@ -1,2 +1,3 @@
-<app-navbar></app-navbar>
-<app-flights></app-flights>
+<app-navbar *ngIf="routerActive!='/register'&&!routerActive.includes('/root')"></app-navbar>
+<router-outlet></router-outlet>
+

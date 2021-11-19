@@ -1,0 +1,76 @@
+.profile{
+  height: 35px;
+}
+
+.modal-title{
+  margin: 0px !important;
+  font-weight: 700;
+}
+
+.modal-body{
+  align-items: center;
+  text-align: center;
+}
+
+.modal-hero{
+  height: 200px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: green !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: green !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: green !important;;
+}
+
+.img-email{
+  height: 34px;
+  margin-right: 10px;
+}
+
+.container-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redirect{
+  color:dodgerblue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.container{
+  header{
+    h1{
+      font-family: 'Anton', sans-serif;
+      font-size: 36px;
+    }
+    p{
+      font-family: sans-serif;
+      font-weight: 400;
+    }
+  }
+}
+
+
+
+.register{
+  border: 3px solid;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero{
+  width: 600px;
+}

@@ -4,6 +4,7 @@
       <img src="https://img.icons8.com/fluency/48/000000/airplane-front-view.png"/>
       UTPFlights
     </a>
+
     <div class="d-flex">
       <button class="btn btn-outline-primary" (click)="open(content)">
         <img src="https://img.icons8.com/material-rounded/24/000000/login-rounded-right.png"/>
@@ -33,21 +34,26 @@
         </div>
       </header>
       <body class="mt-4">
-        <div class="input-group mb-3">
-          <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
-          <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" >
-        </div>
-        <div class="input-group mb-3">
-          <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
-          <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" >
-        </div>
-        <div class="col-auto mb-3 container-button">
-          <button type="submit" class="btn btn-primary ">Iniciar sesión</button>
-        </div>
+        <form action="" (ngSubmit)="activeRegister()" [formGroup]="form">
+          <div class="input-group mb-3">
+            <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
+            <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico"  formControlName="email" >
+          </div>
+          <div class="input-group mb-3">
+            <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
+            <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"  formControlName="password" >
+          </div>
+          <div class="invalid-feedback" *ngIf="error===true">
+            Please choose a username.
+          </div>
+          <div class="col-auto mb-3 container-button">
+            <button type="submit" class="btn btn-primary " (click)="modal.dismiss('Cross click')">Iniciar sesión</button>
+          </div>
+        </form>
       </body>
       <footer>
         <p>
-          ¿No tienes una cuenta? <br> <span class="redirect" (click)="activeRegister()">Regístrate</span> y aprovecha nuestras promociones
+          ¿No tienes una cuenta? <br> <span class="redirect" (click)="toRegister()" (click)="modal.dismiss('Cross click')">Regístrate</span> y aprovecha nuestras promociones
         </p>
       </footer>
     </section>
@@ -59,19 +65,20 @@
         <p>Sigue precios, organiza tus planes de viaje y accede a ofertas exclusivas para miembros con tu cuenta UTPFlights.</p>
       </header>
       <body>
-        <body class="mt-4">
-          <div class="input-group mb-3">
-            <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
-            <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" >
-          </div>
-          <div class="input-group mb-3">
-            <img class="img-email" src="https://img.icons8.com/color/48/000000/password1--v1.png"/>
-            <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" >
-          </div>
-          <div class="col-auto mb-3 container-button">
-            <button type="submit" class="btn btn-primary">Registrarse</button>
-          </div>
-        </body>
+        <form (ngSubmit)="toRegister()" [formGroup]="form">
+            <div class="input-group mb-3">
+              <img class="img-email" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/64/000000/external-email-interface-kiranshastry-lineal-color-kiranshastry-1.png"/>
+              <input type="email" id="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" formControlName="email">
+              <div *ngIf="form.get('email')?.errors">
+                <p *ngIf="form.get('email')?.hasError('email')">
+                  No is email
+                </p>
+              </div>
+            </div>
+            <div class="col-auto mb-3 container-button">
+              <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Registrarse</button>
+            </div>
+        </form>
       </body>
       <footer>
         <p>

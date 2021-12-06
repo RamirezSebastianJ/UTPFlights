@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+  margin-top: 50px;
+
+  .menu{
+    ul{
+      margin-top: 0;
+      margin-bottom: 1rem;
+      list-style: none;
+    }
+  }
+
+  .schedule-flight{
+    width: 100%;
+    .body{
+      display: flex;
+      padding: 50px;
+      justify-content: space-evenly;
+
+      .left{
+
+      }
+    }
+  }
+}

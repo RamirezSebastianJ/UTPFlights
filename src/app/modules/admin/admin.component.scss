@@ -1,0 +1,75 @@
+.container{
+  display: flex;
+  margin-top: 50px;
+
+  .menu{
+    ul{
+      margin-top: 0;
+      margin-bottom: 1rem;
+      list-style: none;
+    }
+  }
+
+  .schedule-flight{
+    width: 100%;
+    .body{
+      display: flex;
+      padding: 10px;
+      justify-content: space-evenly;
+    }
+
+    .button{
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+
+.input{
+  margin-bottom: 15px;
+}
+
+
+.vuelo{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.item{
+  .title{
+    font-weight: bold;
+    color: #007bff;
+  }
+}
+
+@media(max-width: 768px){
+  .container{
+    display: block;
+  }
+
+  .menu{
+
+    ul{
+      padding: 0;
+    }
+
+    li{
+      text-align: center;
+    }
+  }
+
+  .vuelo{
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+}

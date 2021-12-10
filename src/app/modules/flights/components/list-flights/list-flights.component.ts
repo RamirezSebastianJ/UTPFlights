@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Vuelo } from 'src/app/modules/admin/core/model/vuelo.model';
 import { RegisterFlightService } from 'src/app/modules/admin/core/services/register-flight.service';
 
@@ -8,7 +8,7 @@ import { RegisterFlightService } from 'src/app/modules/admin/core/services/regis
   styleUrls: ['./list-flights.component.scss']
 })
 export class ListFlightsComponent implements OnInit {
-  listaVuelos: Vuelo[] = [];
+  @Input () listaVuelos: Vuelo[] = [];
 
   constructor(private registerFlightService: RegisterFlightService) { }
 

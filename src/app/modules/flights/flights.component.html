@@ -1,11 +1,17 @@
 <div class="filter mt-3">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Origen" aria-label="Username">
-    <input type="text" class="form-control" placeholder="Destino" aria-label="Server">
-    <input type="date" class="form-control" placeholder="Fecha de vuelo" aria-label="Fecha de vuelo">
-    <button type="button" class="btn btn-primary ">
-      <img class="img-email" src="../../../assets/search-icon.png"/>
-    </button>
-  </div>
+  <form [formGroup]="form">
+    <div class="input-group mb-3">
+      <select formControlName="origen" class="form-control"  >
+        <option *ngFor="let city of destinos" >{{city}}</option>
+      </select>
+      <select formControlName="destino" class="form-control"  >
+        <option *ngFor="let city of destinos" >{{city}}</option>
+      </select>
+      <input type="date" class="form-control" placeholder="Fecha de vuelo" aria-label="Fecha de vuelo" formControlName="fechaVuelo">
+      <button type="button" class="btn btn-primary " (click)="filtrar()">
+        <img class="img-email" src="../../../assets/search-icon.png"/>
+      </button>
+    </div>
+  </form>
 </div>
-<app-list-flights></app-list-flights>
+<app-list-flights [listaVuelos]="vuelos"></app-list-flights>

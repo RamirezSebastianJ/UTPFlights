@@ -132,4 +132,14 @@ export class NavbarComponent implements OnInit {
     this.log = false;
   }
 
+  redirect(){
+    if(this.rolLogin==="2"){
+      this.router.navigate(['root/home']);
+    }else{
+      if( this.rolLogin==="1"){
+        this.router.navigate(['admin'],);
+      }
+    }
+  }
+
 }

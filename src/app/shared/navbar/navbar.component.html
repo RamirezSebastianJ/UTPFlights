@@ -1,12 +1,12 @@
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" [routerLink]="'/'">
       <img src="https://img.icons8.com/fluency/48/000000/airplane-front-view.png"/>
       UTPFlights
     </a>
 
     <div class="d-flex" *ngIf="log">
-      <button class="btn btn-outline-primary" >
+      <button class="btn btn-outline-primary" (click)="redirect()">
         <img src="https://img.icons8.com/ios-filled/24/000000/cat-profile.png"/>
         {{emailLogin}}
       </button>

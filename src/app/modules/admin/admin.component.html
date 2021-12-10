@@ -2,9 +2,10 @@
 
   <div class="menu">
     <ul class="">
-      <li class="dropdown-item">Programar vuelo</li>
-      <li><a class="dropdown-item active" href="#" aria-current="true">Active link</a></li>
-      <li><a class="dropdown-item" href="#">Another link</a></li>
+      <li (click)="menuSelected(1)" [ngClass]="classFlight">Programar vuelo </li>
+      <li (click)="menuSelected(2)" [ngClass]="classEditFlight">Editar vuelo</li>
+      <li (click)="menuSelected(3)" [ngClass]="classCancelFlight">Cancelar vuelo</li>
+      <li (click)="menuSelected(4)" [ngClass]="classEditPerfil">Editar perfil</li>
     </ul>
   </div>
 
@@ -12,66 +13,279 @@
     <div class="header">
 
     </div>
-    <div class="body">
-      <div class="left">
-        <form action="">
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Origen</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
+    <div class="register-flight" *ngIf="selected===1">
+      <div class="body" >
+        <form [formGroup]="form">
+        <div class="left">
 
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Destino</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
-        </form>
-      </div>
-
-      <div class="right">
-        <form action="">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
-
-          <form>
-            <div class="form-group">
-              <label for="exampleFormControlFile1">Example file input</label>
-              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <div  class="input">
+              <label  >Vuelo internacional</label>
+              <select formControlName="internacional" class="form-control" id="exampleFormControlSelect1" (change)="setDestinosNacionales()">
+                <option >No</option>
+                <option >Si</option>
+              </select>
             </div>
-          </form>
-        </form>
-      </div>
 
+            <div  class="input">
+              <label  >Origen</label>
+              <select formControlName="origen" [ngModel]="origenSeleccionado" class="form-control"  (change)="setDestinosNacionales()">
+                <option [value]="city"  *ngFor="let city of origenNacionales">{{city}}</option>
+              </select>
+            </div>
+
+            <div  class="input">
+              <label >Destino</label>
+              <select formControlName="destino" class="form-control"  >
+                <option *ngFor="let city of destinos" (click)="destinoSeleccionado = city">{{city}}</option>
+              </select>
+            </div>
+
+            <div  class="input">
+              <label >Fecha de vuelo</label>
+              <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fecha de vuelo" formControlName="fechaVuelo">
+            </div>
+
+            <div  class="input">
+              <label >Hora de vuelo</label>
+              <input type="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Hora del vuelo" formControlName="horaVuelo">
+            </div>
+
+            <div  class="input">
+              <label for="exampleFormControlInput1">Tiempo de vuelo</label>
+              <input type="number" class="form-control" min="0" id="exampleFormControlInput1" placeholder="Tiempo de duración del vuelo" formControlName="tiempoDeVuelo">
+            </div>
+
+        </div>
+
+        <div class="right">
+            <div  class="input">
+              <label >Costo de vuelo por persona</label>
+              <input type="number" class="form-control" min="0"  placeholder="Costo del vuelo"  formControlName="valorTicket" >
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="button">
+        <button type="submit" class="btn btn-primary mb-2" (click)="registrarVuelo()" >Confirmar</button>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+
+    <div class="cancel-flight" *ngIf="selected===2">
+      <div class="vuelo" *ngFor="let vuelo of listaVuelos">
+        <div class="item">
+          <div class="title">
+            <p>Origen</p>
+          </div>
+          <div class="description">
+            <p>{{vuelo.origen}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="title">
+            <p>Destino</p>
+          </div>
+          <div class="description">
+            <p>{{vuelo.destino}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="title">
+            <p>Fehca de vuelo</p>
+          </div>
+          <div class="description">
+            <p>{{vuelo.f_vuelo?.substring(0,10)}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="title">
+            <p>Hora de vuelo</p>
+          </div>
+          <div class="description">
+            <p>{{vuelo.h_vuelo?.substring(0,5)}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="title">
+            <p>Tiempo de vuelo</p>
+          </div>
+          <div class="description">
+            <p>{{vuelo.t_vuelo}} horas</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="title">
+            <p>Tipo de vuelo</p>
+          </div>
+          <div class="description">
+            <p>{{vuelo.tipo_vuelo=="1"?"Internaciona":"Nacional"}}</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="title">
+            <p>Valor de tiquete</p>
+          </div>
+          <div class="description">
+            <p>$ {{vuelo.valor_tiquete}}</p>
+          </div>
+        </div>
+
+        <div class="delete">
+          <button class="btn btn-success" (click)="open(content, vuelo)">
+            EDITAR
+          </button>
+        </div>
+      </div>
+  </div>
+
+    <div class="cancel-flight" *ngIf="selected===3">
+        <div class="vuelo" *ngFor="let vuelo of listaVuelos">
+          <div class="item">
+            <div class="title">
+              <p>Origen</p>
+            </div>
+            <div class="description">
+              <p>{{vuelo.origen}}</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="title">
+              <p>Destino</p>
+            </div>
+            <div class="description">
+              <p>{{vuelo.destino}}</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="title">
+              <p>Fehca de vuelo</p>
+            </div>
+            <div class="description">
+              <p>{{vuelo.f_vuelo?.substring(0,10)}}</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="title">
+              <p>Hora de vuelo</p>
+            </div>
+            <div class="description">
+              <p>{{vuelo.h_vuelo?.substring(0,5)}}</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="title">
+              <p>Tiempo de vuelo</p>
+            </div>
+            <div class="description">
+              <p>{{vuelo.t_vuelo}} horas</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="title">
+              <p>Tipo de vuelo</p>
+            </div>
+            <div class="description">
+              <p>{{vuelo.tipo_vuelo=="1"?"Internaciona":"Nacional"}}</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="title">
+              <p>Valor de tiquete</p>
+            </div>
+            <div class="description">
+              <p>$ {{vuelo.valor_tiquete}}</p>
+            </div>
+          </div>
+
+          <div class="delete">
+            <button class="btn btn-danger" (click)="cancelarVuelo(vuelo.id_vuelo!)">
+              CANCELAR
+            </button>
+          </div>
+        </div>
+    </div>
   </div>
 
 </div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <div class="modal-title" id="modal-basic-title">
+      <img src="https://img.icons8.com/fluency/48/000000/airplane-front-view.png"/>
+      UTPFlights
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="body" >
+      <form [formGroup]="form">
+      <div class="left">
+
+          <div  class="input">
+            <label  >Vuelo internacional</label>
+            <select formControlName="internacional" class="form-control" id="exampleFormControlSelect1" (change)="setDestinosNacionales()">
+              <option >No</option>
+              <option >Si</option>
+            </select>
+          </div>
+
+          <div  class="input">
+            <label  >Origen</label>
+            <select formControlName="origen" [ngModel]="origenSeleccionado" class="form-control"  (change)="setDestinosNacionales()">
+              <option [value]="city"  *ngFor="let city of origenNacionales">{{city}}</option>
+            </select>
+          </div>
+
+          <div  class="input">
+            <label >Destino</label>
+            <select formControlName="destino" class="form-control"  >
+              <option *ngFor="let city of destinos" (click)="destinoSeleccionado = city">{{city}}</option>
+            </select>
+          </div>
+
+          <div  class="input">
+            <label >Fecha de vuelo</label>
+            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fecha de vuelo" formControlName="fechaVuelo">
+          </div>
+
+          <div  class="input">
+            <label >Hora de vuelo</label>
+            <input type="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Hora del vuelo" formControlName="horaVuelo">
+          </div>
+
+          <div  class="input">
+            <label for="exampleFormControlInput1">Tiempo de vuelo</label>
+            <input type="number" class="form-control" min="0" id="exampleFormControlInput1" placeholder="Tiempo de duración del vuelo" formControlName="tiempoDeVuelo">
+          </div>
+
+      </div>
+
+      <div class="right">
+          <div  class="input">
+            <label >Costo de vuelo por persona</label>
+            <input type="number" class="form-control" min="0"  placeholder="Costo del vuelo"  formControlName="valorTicket" >
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="button">
+      <button type="submit" class="btn btn-primary mb-2" (click)="ediatrVuelo()" >Confirmar</button>
+    </div>
+  </div>
+</ng-template>

@@ -27,13 +27,17 @@ export class NavbarComponent implements OnInit {
   };
   error = false;
 
+  emailLogin: string = "";
+  rolLogin: string = "";
+  log: boolean = false;
+
   constructor(private modalService: NgbModal, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
     console.log(this.route.snapshot.fragment);
   }
   ngOnInit(): void {
     console.log(this.route.snapshot.fragment);
+    this.displayLogin();
     throw new Error('Method not implemented.');
-
   }
 
   open(content: any) {
@@ -76,13 +80,15 @@ export class NavbarComponent implements OnInit {
       this.loginResponse = response;
       console.log(response);
       if(response.status ===200){
-
-
+        localStorage.setItem('email',this.form.get('email')!.value  );
+        localStorage.setItem('rol',response.rol.toString());
+        this.displayLogin();
         if(response.rol===2){
           this.router.navigate(['root/home']);
         }else{
           if(response.rol===1){
             alert('Login ADMIN');
+            this.router.navigate(['admin'],);
           }else{
             alert('Login Usuario');
           }
@@ -106,6 +112,24 @@ export class NavbarComponent implements OnInit {
       console.error("error voucher ", error)
     });
     this.error = true;
+
+  }
+
+  displayLogin(){
+    let email = localStorage.getItem('email');
+    let rol = localStorage.getItem('rol');
+
+    if(email?.length && rol?.length){
+      this.emailLogin = email;
+      this.rolLogin = rol;
+      this.log = true;
+    }
+  }
+
+  cerrarSesion(){
+    localStorage.clear();
+    this.router.navigate(['/']);
+    this.log = false;
   }
 
 }

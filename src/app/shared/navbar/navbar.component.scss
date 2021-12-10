@@ -47,3 +47,17 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+@media(max-width: 768px){
+  .container-fluid{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .d-flex{
+    margin: 10px 0;
+  }
+
+  
+}
